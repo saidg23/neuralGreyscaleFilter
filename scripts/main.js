@@ -46,14 +46,14 @@ sourceImage.src = image.src;
 
 function execute()
 {
-    let population = 20;
+    let population = 40;
     let netList = [];
     for(let i = 0; i < population; ++i)
     {
         netList.push(new MLP(3, 4, 1));
     }
 
-    let maxIterations = 900;
+    let maxIterations = 300;
 
     for(let iteration = 0; iteration < maxIterations; ++iteration)
     {
@@ -61,7 +61,7 @@ function execute()
         for(let i = 0; i < population; ++i)
         {
             let fitness = 0;
-            for(let j = 0; j < 20; ++j)
+            for(let j = 0; j < 30; ++j)
             {
                 let red = getRand(0, 255);
                 let green = getRand(0, 255);
@@ -73,13 +73,13 @@ function execute()
 
                 let score = 0;
                 let difference = Math.abs(expectedOutput - output);
-                if(difference >= 0.03)
+                if(difference >= 0.05)
                 {
                     score = 0;
                 }
                 else
                 {
-                    score = 0.03 - difference;
+                    score = 0.05 - difference;
                 }
 
                 fitness += score;
@@ -100,8 +100,8 @@ function execute()
     let proccessedImage = ctx.createImageData(image.width, image.height);
     for(let i = 0; i < imageData.data.length; i += 4)
     {
-        netList[0].input([imageData.data[i] / 255 * 2 - 1, imageData.data[i + 1] / 255 * 2 - 1, imageData.data[i + 2] / 255 * 2 - 1]);
-        let value = netList[0].getOutput()[0];
+        netList[39].input([imageData.data[i] / 255 * 2 - 1, imageData.data[i + 1] / 255 * 2 - 1, imageData.data[i + 2] / 255 * 2 - 1]);
+        let value = netList[39].getOutput()[0];
         let color = 0;
 
         if(value > 1)
